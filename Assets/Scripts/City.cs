@@ -5,7 +5,14 @@ using UnityEngine;
 public class City : MonoBehaviour
 {
     private int health;
-    // Start is called before the first frame update
+
+    public GameManager gameManager;
+
+    public void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     void Start()
     {
         health = 100;
@@ -16,10 +23,12 @@ public class City : MonoBehaviour
         if (health > 0)
         {
             health -= damage;
-        } else
-        {
-            //TODO - spawn destroyed city prefab
-            gameObject.SetActive(false);
-        }
+
+            if (health <= 0)
+            {
+                gameManager.OnCityDeath();
+                gameObject.SetActive(false);
+            }
+        } 
     }
 }

@@ -42,9 +42,11 @@ public class Shield : MonoBehaviour
     {
         if (other.CompareTag("mouseCollider")) powerOn = true;
 
-        if (other.CompareTag("missile") && shieldPower > shieldPower / 2)
+        if (other.CompareTag("missile") && shieldPower > shieldPowerMax / 1.5f)
         {
+            gameManager.OnMissileDeflect();
             gameManager.UpdateScore(deflectionScore);
+            shieldPower = 0;
             Destroy(other.gameObject);
         }
     }

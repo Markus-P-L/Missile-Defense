@@ -7,6 +7,7 @@ TagManager:
   - missile
   - city
   - mouseCollider
+  - shield
   layers:
   - Default
   - TransparentFX

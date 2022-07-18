@@ -24,9 +24,19 @@ public class Missile : MonoBehaviour
             Debug.Log("You tickled a missile!");
         } else
         {
-            Debug.Log("missile hit something else!");
-            //TODO - spawn explosion particle effect
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("missile"))
+            {
+                Debug.Log("missile on missile!");
+
+            } else if (collision.gameObject.CompareTag("shield"))
+            {
+                Debug.Log("missile hit a shield!");
+
+            } else {
+                Debug.Log("missile hit something else!");
+                //TODO - spawn explosion particle effect
+                Destroy(gameObject);
+            }
         }
     }
 }
